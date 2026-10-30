@@ -1,0 +1,8 @@
+{
+  "_note": "TEMPLATE ONLY. Replace with questions about YOUR PDF. Label relevant_pages by reading the PDF yourself. Include some 'not_found' questions whose answer is genuinely absent.",
+  "pdf": "your_document.pdf",
+  "questions": [
+    {"question": "REPLACE: a question answered on a specific page", "expected_behavior": "answer", "relevant_pages": [1], "reference_answer": "REPLACE"},
+    {"question": "REPLACE: a question the document does NOT answer", "expected_behavior": "not_found", "relevant_pages": [], "reference_answer": ""}
+  ]
+}

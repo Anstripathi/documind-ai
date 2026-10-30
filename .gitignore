@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+# Secrets
+.env
+.streamlit/secrets.toml
+# Private/uploaded documents and caches
+*.pdf
+uploads/
+.cache/
+huggingface/
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Local backups
+app.py.backup
+backup_before_ollama/
+
+# Local backups
+app.py.backup
+backup_before_ollama/

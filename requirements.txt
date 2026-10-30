@@ -1,0 +1,9 @@
+# Lower bounds only: versions were NOT tested together. After your first successful local
+# run, run `pip freeze` and pin exact versions for reproducible deployment.
+streamlit>=1.40
+pymupdf>=1.24
+sentence-transformers>=3.0
+faiss-cpu>=1.8
+numpy>=1.26
+google-genai>=1.0
+pytest>=8.0
