@@ -1,4 +1,4 @@
-"""DocuMind AI - PDF question answering with source-grounded answers (Streamlit)."""
+﻿"""DocuMind AI - PDF question answering with source-grounded answers (Streamlit)."""
 from __future__ import annotations
 
 import hashlib
@@ -15,14 +15,14 @@ from src.rag_pipeline import RAGPipeline
 from src.retrieval import Retriever
 
 SETTINGS = load_settings()
-st.set_page_config(page_title="DocuMind AI", page_icon="📄", layout="wide")
+st.set_page_config(page_title="DocuMind AI", page_icon="ðŸ“„", layout="wide")
 
 STATUS_LABEL = {
-    "answered": "✅ Answered (citations verified)",
-    "unverified": "⚠️ Unverified (no valid citation)",
-    "not_found": "ℹ️ Not found in document",
-    "extractive": "📎 Extractive mode (no LLM)",
-    "error": "❌ Error",
+    "answered": "âœ… Answered (citations verified)",
+    "unverified": "âš ï¸ Unverified (no valid citation)",
+    "not_found": "â„¹ï¸ Not found in document",
+    "extractive": "ðŸ“Ž Extractive mode (no LLM)",
+    "error": "âŒ Error",
 }
 
 
@@ -67,7 +67,7 @@ with st.sidebar:
         model_name = SETTINGS.llm_model
     elif api_key:
         provider_name = "gemini"
-        model_name = os.getenv("DOCUMIND_LLM_MODEL", "gemini-2.5-flash")
+        model_name = os.getenv("DOCUMIND_LLM_MODEL", "gemini-3.8-flash")
     else:
         provider_name = "none"
         model_name = SETTINGS.llm_model
@@ -85,12 +85,12 @@ with st.sidebar:
         if llm_provider
         else "?? not configured (extractive mode)",
     )
-    if st.button("🗑️ Clear document & conversation", use_container_width=True):
+    if st.button("ðŸ—‘ï¸ Clear document & conversation", use_container_width=True):
         reset_all()
         st.rerun()
 
 # ---------------- Header ----------------
-st.title("📄 DocuMind AI")
+st.title("ðŸ“„ DocuMind AI")
 st.write(
     "Upload a PDF and ask questions. Answers are generated **only from retrieved passages** "
     "and cite page numbers, which are checked against the evidence."
@@ -153,9 +153,9 @@ if doc and retriever:
             if msg.evidence:
                 with st.expander(f"Evidence ({len(msg.evidence)} passages)"):
                     for r in msg.evidence:
-                        mark = "✅ cited" if r.chunk.page in msg.cited_pages else ""
-                        st.markdown(f"**#{r.rank} · {r.chunk.doc_name} · Page {r.chunk.page}** "
-                                    f"· similarity {r.score:.3f} {mark}")
+                        mark = "âœ… cited" if r.chunk.page in msg.cited_pages else ""
+                        st.markdown(f"**#{r.rank} Â· {r.chunk.doc_name} Â· Page {r.chunk.page}** "
+                                    f"Â· similarity {r.score:.3f} {mark}")
                         st.text(r.chunk.text)  # plain text: never render document content as markdown
 
     question = st.chat_input("Ask a question about the document...")
@@ -176,9 +176,9 @@ else:
 with st.expander("Methodology & limitations"):
     st.markdown(
         """
-**Pipeline:** PDF → validation → page-wise text extraction → chunking (never crossing pages)
-→ embeddings (`all-MiniLM-L6-v2`) → vector index → top-k retrieval → LLM restricted to the
-retrieved passages → citation validation.
+**Pipeline:** PDF â†’ validation â†’ page-wise text extraction â†’ chunking (never crossing pages)
+â†’ embeddings (`all-MiniLM-L6-v2`) â†’ vector index â†’ top-k retrieval â†’ LLM restricted to the
+retrieved passages â†’ citation validation.
 
 **Limitations**
 - Similarity scores are cosine similarities, **not probabilities** of being correct.
@@ -191,3 +191,4 @@ retrieved passages → citation validation.
 - The document is processed in memory and discarded when you clear it or close the session.
         """
     )
+
